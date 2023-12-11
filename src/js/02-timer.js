@@ -19,7 +19,7 @@ console.log(input);
 startBtn.setAttribute('disabled', 'disabled');
 
 function addLeadingZero(number) {
-    return number < 10 ? `0${number}` : number;
+    return number < 10 ? number.padStart(2, '0') : number;
 }
 
 const options = {
