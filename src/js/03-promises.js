@@ -1,4 +1,4 @@
-console.log('script goemona');
+console.log('script goemon');
 import Notiflix from 'notiflix';
 
 const submitBtn = document.querySelector('button');
@@ -10,28 +10,28 @@ const delayStep = document.querySelector('[name="step"]');
 const amount = document.querySelector('[name="amount"]');
 //console.log(amount);
 
-function createPromise(position, delay) {
+function createPromise(position, delay, delayForAlert) {
   // Return a promise that resolves or rejects after the specified delay
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
-        resolve({ position, delay });
+        resolve({ position, delay, delayForAlert});
       } else {
-        reject({ position, delay });
+        reject({ position, delay, delayForAlert});
       }     
     }, delay);
   });
 }
 
-function processPromise(position, delay) {
-  createPromise(position, delay)
-    .then(({ position, delay }) => {           
-      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+function processPromise(position, delay, delayForAlert) {
+  createPromise(position, delay, delayForAlert)
+    .then(({ position, delayForAlert}) => {           
+      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delayForAlert}ms`);
     })
-    .catch(({ position, delay }) => {
-      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+    .catch(({ position, delayForAlert}) => {
+      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delayForAlert}ms`);
     })
     .finally(() => {
       if (position === +amount.value) {
@@ -40,7 +40,7 @@ function processPromise(position, delay) {
         return;
       }
       //Call processPromise func with updated position&delay
-      processPromise(position + 1, delay + +delayStep.value);
+      processPromise(position + 1, delay = +delayStep.value, delayForAlert + +delayStep.value);
     })
 }
 
@@ -51,7 +51,7 @@ document.querySelector('.form').addEventListener("submit", (e) => {
     submitBtn.setAttribute('disabled', 'disabled');
 
     //Start process with initial position&delay
-    processPromise(1, +firstDelay.value);
+    processPromise(1, +firstDelay.value, +firstDelay.value);
   });
 
 
