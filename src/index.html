@@ -3,14 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 9</title>
-    <link rel="stylesheet" href="css/common.css" />
+    <title>Homework 10</title>
+    <style>
+      #prev:disabled, #next:disabled {
+        cursor: not-allowed;
+      }
+      #menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: white;
+      }
+      #menu span {
+        padding: .75rem;
+        cursor: pointer;
+      }
+      .post {
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 9px;
+        padding: .5rem 1rem;
+      }
+      #content {
+        margin-top: 3.5rem;
+      }
+    </style>
   </head>
   <body>
-    <ul>
-      <li><a href="01-color-switcher.html">Color switcher</a></li>
-      <li><a href="02-timer.html">Countdown timer</a></li>
-      <li><a href="03-promises.html">Promise generator</a></li>
-    </ul>
+    <!-- <select class="breed-select"></select>
+    <p class="loader">Loading data, please wait...</p>
+    <p class="error">Oops! Something went wrong! Try reloading the page!</p> -->
+    <div id="menu">
+      <span>Main Page</span>
+      <span>About Us</span>
+      <span>Contact</span>
+    </div>
+    <div id="content">
+      <h1>POSTS</h1>
+      <div class="cat-info"></div>
+      <button id="prev">Previous page</button>
+      <span id="page"></span>
+      <button id="next">Next page</button>
+    </div>
+    <script src="index.js" type="module"></script>
   </body>
 </html>
